@@ -73,7 +73,7 @@ export function useResizeViewport(viewportRef, store, scene) {
           return;
         }
 
-        const canvasRect = entries[0].contentRect;
+        const canvasRect = {width: window.innerWidth, height: window.innerHeight};
 
         const rendererSize = calculateRendererSize(canvasRect, maxResolution, isVRPresenting);
 
