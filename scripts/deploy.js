@@ -101,6 +101,13 @@ const getTs = (() => {
   });
   step.text = "Preparing Deploy.";
 
+  // 临时解决 admin 打包上传失败的问题
+  // https://github.com/mozilla/hubs/pull/5365
+  // https://github.com/mozilla/hubs/issues/4208#issuecomment-1021577510
+
+  // HACK TO WORK AROUND NCP BEHAVIOUR
+  await new Promise(res => setTimeout(res, 5000));
+
   step.text = "Packaging Build.";
   tar.c({ sync: true, gzip: true, C: path.join(__dirname, "..", "dist"), file: "_build.tar.gz" }, ["."]);
   step.text = `Uploading Build ${buildEnv.BUILD_VERSION}.`;
