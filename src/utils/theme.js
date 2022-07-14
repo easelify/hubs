@@ -24,10 +24,10 @@ const DEFAULT_COLORS = {
 
 function getThemeColor(name) {
   const themeId = window.APP?.store?.state?.preferences?.theme;
-
+  let thereArr = JSON.parse(configs.APP_CONFIG?.theme?.themes)
   const theme =
-    (themeId && configs.APP_CONFIG?.theme?.themes?.find(theme => theme.id === themeId)) ||
-    configs.APP_CONFIG?.theme?.themes?.find(theme => theme.default === true);
+    (themeId && thereArr.find(theme => theme.id === themeId)) ||
+    thereArr.find(theme => theme.default === true);
   if (theme?.variables?.[name]) {
     return theme.variables[name];
   }
