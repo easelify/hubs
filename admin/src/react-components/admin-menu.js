@@ -134,13 +134,13 @@ class Menu extends Component {
           <ListItemIcon className={this.props.classes.icon}>
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText className={this.props.classes.text} primary="Home" />
+          <ListItemText className={this.props.classes.text} primary="首页" />
         </ListItem>
         <ListItem className={this.props.classes.item}>
           <ListItemIcon className={this.props.classes.icon}>
             <LibraryBooksIcon />
           </ListItemIcon>
-          <ListItemText className={this.props.classes.text} primary="Content" />
+          <ListItemText className={this.props.classes.text} primary="内容管理" />
         </ListItem>
         <Collapse in={true} timeout="auto" unmountOnExit>
           <List component="nav" disablePadding>
@@ -153,7 +153,7 @@ class Menu extends Component {
               <ListItemIcon className={this.props.classes.icon}>
                 <BackupIcon />
               </ListItemIcon>
-              <ListItemText className={this.props.classes.text} primary="Import Content" />
+              <ListItemText className={this.props.classes.text} primary="导入内容" />
             </ListItem>
             {this.props.resources.map(this.renderResource.bind(this))}
           </List>
@@ -162,7 +162,7 @@ class Menu extends Component {
           <ListItemIcon className={this.props.classes.icon}>
             <SettingsIcon />
           </ListItemIcon>
-          <ListItemText className={this.props.classes.text} primary="Setup" />
+          <ListItemText className={this.props.classes.text} primary="设置" />
         </ListItem>
         <Collapse in={true} timeout="auto" unmountOnExit>
           <List component="nav" disablePadding>
@@ -175,7 +175,7 @@ class Menu extends Component {
               <ListItemIcon className={this.props.classes.icon}>
                 <ViewIcon />
               </ListItemIcon>
-              <ListItemText className={this.props.classes.text} primary="App Settings" />
+              <ListItemText className={this.props.classes.text} primary="应用设置" />
             </ListItem>
             <ListItem
               className={classNames(this.props.classes.item, this.props.classes.nested)}
@@ -186,7 +186,7 @@ class Menu extends Component {
               <ListItemIcon className={this.props.classes.icon}>
                 <ViewIcon />
               </ListItemIcon>
-              <ListItemText className={this.props.classes.text} primary="Server Settings" />
+              <ListItemText className={this.props.classes.text} primary="服务器设置" />
             </ListItem>
             <ListItem
               className={classNames(this.props.classes.item, this.props.classes.nested)}
@@ -197,7 +197,7 @@ class Menu extends Component {
               <ListItemIcon className={this.props.classes.icon}>
                 <ViewIcon />
               </ListItemIcon>
-              <ListItemText className={this.props.classes.text} primary="Server Access" />
+              <ListItemText className={this.props.classes.text} primary="服务器访问" />
             </ListItem>
             <ListItem
               className={classNames(this.props.classes.item, this.props.classes.nested)}
@@ -208,7 +208,7 @@ class Menu extends Component {
               <ListItemIcon className={this.props.classes.icon}>
                 <ViewIcon />
               </ListItemIcon>
-              <ListItemText className={this.props.classes.text} primary="Content CDN" />
+              <ListItemText className={this.props.classes.text} primary="CDN设置" />
             </ListItem>
           </List>
         </Collapse>
