@@ -25,9 +25,13 @@ const DEFAULT_COLORS = {
 function getThemeColor(name) {
   const themeId = window.APP?.store?.state?.preferences?.theme;
 
+  let themes = configs.APP_CONFIG?.theme?.themes || [];
+  if (typeof themes === "string") {
+    themes = JSON.parse(themes);
+  }
+
   const theme =
-    (themeId && configs.APP_CONFIG?.theme?.themes?.find(theme => theme.id === themeId)) ||
-    configs.APP_CONFIG?.theme?.themes?.find(theme => theme.default === true);
+    (themeId && themes?.find(theme => theme.id === themeId)) || themes?.find(theme => theme.default === true);
   if (theme?.variables?.[name]) {
     return theme.variables[name];
   }
