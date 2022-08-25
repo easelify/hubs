@@ -158,9 +158,7 @@ class ContentCDNComponent extends Component {
       try {
         // Need to CORS-proxy the CORS-proxy because CSP will block us otherwise!
         const res = await fetch(
-          `https://${configs.CORS_PROXY_SERVER}/https://${this.state.workerInstanceName}-proxy.${
-            this.state.workerDomain
-          }/hubs/pages/latest/whats-new.html`
+          `https://${configs.CORS_PROXY_SERVER}/https://${this.state.workerInstanceName}-proxy.${this.state.workerDomain}/hubs/pages/latest/whats-new.html`
         );
 
         if (!res.ok) {
@@ -259,61 +257,57 @@ class ContentCDNComponent extends Component {
           <CardContent className={this.props.classes.info}>
             {this.state.provider === "arbortect" && (
               <Typography variant="body2" gutterBottom>
-                You can greatly reduce load on your server and improve loading times by setting up Cloudflare as your
-                CDN.
+                通过将 Cloudflare 设置为 CDN，您可以大大减少服务器上的负载并缩短加载时间。
                 <br />
-                Once enabled, Cloudflare will cache content, reduce latency, and reduce bandwidth used by your server.
+                启用后，Cloudflare 将缓存内容、减少延迟并减少服务器使用的带宽。
               </Typography>
             )}
-            {this.state.provider &&
-              this.state.provider !== "arbortect" && (
-                <Typography variant="body2" gutterBottom>
-                  Hubs Cloud uses bandwidth from your cloud provider to deliver content.
-                  <br />
-                  You can reduce your data transfer costs by switching your CDN to Cloudflare, which does not charge for
-                  data transfer costs to your users.
-                </Typography>
-              )}
+            {this.state.provider && this.state.provider !== "arbortect" && (
+              <Typography variant="body2" gutterBottom>
+                Hubs Cloud 使用您的云提供商提供的带宽来交付内容。
+                <br />
+                您可以通过将 CDN 切换到 Cloudflare 来降低数据传输成本，Cloudflare 不会向您的用户收取数据传输成本。
+              </Typography>
+            )}
             <Typography variant="subheading" gutterBottom className={this.props.classes.section}>
-              Worker Setup
+              Worker设置
             </Typography>
             <Typography variant="body1" gutterBottom>
-              All 3rd party content (videos, images, models) in Hubs Cloud requires CORS proxying due to the{" "}
+              由于浏览器
               <a href="https://www.codecademy.com/articles/what-is-cors" rel="noopener noreferrer" target="_blank">
-                browser security model
+                安全模式
               </a>
-              . As such, you will be using data transfer to send all 3rd party content to your users.
+              ，Hubs Cloud 中的所有第 3 方内容（视频、图像、模型）都需要 CORS 代理 .
+              因此，您将使用数据传输将所有第3方内容发送给您的用户。
             </Typography>
-            {this.state.provider &&
-              this.state.provider !== "arbortect" && (
-                <Typography variant="body1" gutterBottom>
-                  Additionally, you will incur data transfer costs for serving avatars, scenes, and other assets.
-                </Typography>
-              )}
-            {this.state.provider &&
-              this.state.provider !== "arbortect" && (
-                <Typography variant="body1" gutterBottom>
-                  You can minimize this data transfer cost by using a Cloudflare Worker to serve this content:
-                </Typography>
-              )}
+            {this.state.provider && this.state.provider !== "arbortect" && (
+              <Typography variant="body1" gutterBottom>
+                此外，您将产生用于服务化身、场景和其他资产的数据传输成本。
+              </Typography>
+            )}
+            {this.state.provider && this.state.provider !== "arbortect" && (
+              <Typography variant="body1" gutterBottom>
+                您可以通过使用 Cloudflare Worker 来提供此内容，从而最大限度地降低此数据传输成本：
+              </Typography>
+            )}
             <Typography variant="body1" component="div" gutterBottom>
               <ol className={this.props.classes.steps}>
                 <li>
-                  Sign up for&nbsp;
+                  注册&nbsp;
                   <a href="https://cloudflare.com" target="_blank" rel="noopener noreferrer">
                     Cloudflare
                   </a>
-                  .
+                  。
                 </li>
                 <li>
-                  Once you&apos;ve signed up, click Cloudflare logo to go to your <b>Home</b> tab. (
-                  <b>WARNING - Do not &quot;add site&quot; to Cloudflare</b>, you only need to create workers)
+                  注册后，单击 Cloudflare 徽标以转到您的 <b>Home</b> 选项卡。 (
+                  <b>警告 - 不是 &quot;添加网站&quot; 到 Cloudflare</b>, 您仅需要创建workers)
                 </li>
                 <li>
                   In <b>Home</b> tab, click on <b>Workers</b> panel. You&apos;ll be asked to create a workers subdomain.
                 </li>
                 <li>
-                  Enter your workers subdomain here:
+                  在此处输入您的Workers子域名：
                   <p />
                   <input
                     type="text"
@@ -326,14 +320,14 @@ class ContentCDNComponent extends Component {
                 {hasValidWorkerDomain && (
                   <>
                     <li>
-                      In the Workers Dashboard click <b>Create Worker</b>.
+                      在Workers仪表板中点击 <b>Create Worker</b>.
                     </li>
                     <li>
-                      Enter the name for the worker (at the top, above the script) as:
+                      输入 Worker 名称，例如：
                       <div className={this.props.classes.command}>{this.state.workerInstanceName}-proxy</div>
                     </li>
                     <li>
-                      Paste, save, and deploy the following worker script for the worker.
+                      为Worker粘贴、保存和部署以下工作人员脚本。
                       <br />
                       <textarea
                         className={this.props.classes.worker}
@@ -348,43 +342,37 @@ class ContentCDNComponent extends Component {
                       <br />
                     </li>
                     <li>
-                      Repeat the steps above and create and deploy a new worker with the same script. Name this new
-                      worker:
+                      重复上述步骤并使用相同的脚本创建和部署一个新的Worker。 名称：
                       <div className={this.props.classes.command}>{this.state.workerInstanceName}-cors-proxy</div>
                     </li>
                     <li>
-                      Don&apos;t forget to save and <b>deploy</b> both scripts.
+                      不要忘记保存和<b>发布<b/>这两个脚本。
                     </li>
                     <li>
-                      Verify your workers are working.{" "}
+                      验证Workers是否正常工作。
                       <a
-                        href={`https://${this.state.workerInstanceName}-cors-proxy.${
-                          this.state.workerDomain
-                        }/https://www.mozilla.org`}
+                        href={`https://${this.state.workerInstanceName}-cors-proxy.${this.state.workerDomain}/https://www.mozilla.org`}
                         rel="noopener noreferrer"
                         target="_blank"
                       >
-                        This link
-                      </a>{" "}
-                      should show the Mozilla homepage, and&nbsp;
+                        这个链接
+                      </a>
+                      应该显示 Mozilla 主页, 而
                       <a
-                        href={`https://${this.state.workerInstanceName}-proxy.${
-                          this.state.workerDomain
-                        }/hubs/pages/latest/whats-new.html`}
+                        href={`https://${this.state.workerInstanceName}-proxy.${this.state.workerDomain}/hubs/pages/latest/whats-new.html`}
                         rel="noopener noreferrer"
                         target="_blank"
                       >
-                        this link
-                      </a>{" "}
-                      should should the Hubs &quot;What&apos;s New&quot; page.
+                        这个链接
+                      </a>
+                      应该显示<b>新鲜事</b>页面。
                     </li>
                     <li>
-                      Once <b>both</b> links above are working, enable the &apos;Use Cloudflare Worker&apos; setting
-                      below and click &apos;Save&apos; on this page.
+                      一旦上述<b>两个</b>链接都正常工作，请启用“使用 Cloudflare Worker” 并点击“保存”。
                     </li>
                     <li>
-                      If you need more than 100,000 requests per day for content, you&apos;ll need to add a Worker
-                      Unlimited Subscription for an additional $5/mo.
+                      如果您每天需要超过 100,000 次内容请求，则需要以额外 5 美元/月的价格添加 Worker Unlimited
+                      Subscription。
                     </li>
                   </>
                 )}
@@ -397,7 +385,7 @@ class ContentCDNComponent extends Component {
                     value="enableWorker"
                   />
                 }
-                label="Use Cloudflare Worker"
+                label="使用 Cloudflare Worker"
               />
             </Typography>
             {this.state.saving ? (
@@ -410,7 +398,7 @@ class ContentCDNComponent extends Component {
                   variant="contained"
                   color="primary"
                 >
-                  Save
+                  保存
                 </Button>
               )
             )}
